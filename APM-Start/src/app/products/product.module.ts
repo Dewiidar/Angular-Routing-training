@@ -9,7 +9,9 @@ import {RouterModule} from '@angular/router';
 import {ProductService} from './product.service';
 
 const routes = [
-  {path: 'products', component: ProductListComponent}
+  {path: 'products', component: ProductListComponent},
+  {path: 'products/:id', component: ProductDetailComponent},
+  {path: 'products/:id/edit', component: ProductEditComponent}
 ];
 
 @NgModule({
@@ -26,4 +28,5 @@ const routes = [
       ProductService
   ]
 })
+
 export class ProductModule { }
