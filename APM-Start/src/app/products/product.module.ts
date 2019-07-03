@@ -7,11 +7,12 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 import { SharedModule } from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
 import {ProductService} from './product.service';
+import {ProductResolverService} from './product-resolver.service';
 
 const routes = [
   {path: 'products', component: ProductListComponent},
-  {path: 'products/:id', component: ProductDetailComponent},
-  {path: 'products/:id/edit', component: ProductEditComponent}
+  {path: 'products/:id', component: ProductDetailComponent, resolve: {product: ProductResolverService}},
+  {path: 'products/:id/edit', component: ProductEditComponent, resolve: {product: ProductResolverService}}
 ];
 
 @NgModule({
@@ -25,7 +26,8 @@ const routes = [
     ProductEditComponent
   ],
   providers: [
-      ProductService
+      ProductService,
+      ProductResolverService
   ]
 })
 

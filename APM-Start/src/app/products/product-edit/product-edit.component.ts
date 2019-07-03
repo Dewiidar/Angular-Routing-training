@@ -24,19 +24,23 @@ export class ProductEditComponent implements OnInit {
         // const id = +this.route.snapshot.params['id'];
         // this.getProduct(id);
 
-        this.route.params.subscribe(
-            params => this.getProduct(+params.id)
+        // this.route.params.subscribe(
+        //     params => this.getProduct(+params.id)
+        // );
+
+        this.route.data.subscribe(
+            data => this.onProductRetrieved(data['product'])
         );
     }
 
-    getProduct(id: number): void {
-        this.productService.getProduct(id)
-            .subscribe(
-                (product: Product) => this.onProductRetrieved(product),
-                (error: any) => this.errorMessage = <any>error
-            );
-    }
-
+    // getProduct(id: number): void {
+    //     this.productService.getProduct(id)
+    //         .subscribe(
+    //             (product: Product) => this.onProductRetrieved(product),
+    //             (error: any) => this.errorMessage = <any>error
+    //         );
+    // }
+    //
     onProductRetrieved(product: Product): void {
         this.product = product;
 

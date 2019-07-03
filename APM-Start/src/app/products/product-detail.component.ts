@@ -16,23 +16,6 @@ export class ProductDetailComponent implements OnInit {
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.params['id'];
-    this.getProduct(id);
-  }
-
-  getProduct(id: number) {
-    this.productService.getProduct(id).subscribe(
-      product => this.onProductRetrieved(product),
-      error => this.errorMessage = <any>error);
-  }
-
-  onProductRetrieved(product: Product): void {
-    this.product = product;
-
-    if (this.product) {
-      this.pageTitle = `Product Detail: ${this.product.productName}`;
-    } else {
-      this.pageTitle = 'No product found';
-    }
+    this.product = this.route.snapshot.data['product'];
   }
 }
