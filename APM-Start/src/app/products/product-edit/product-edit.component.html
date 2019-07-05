@@ -7,10 +7,12 @@
        *ngIf="product">
 
     <div class="wizard">
-      <a [routerLink]="['info']">
-        Basic information
+      <a [routerLink]="['info']" routerLinkActive="active">
+        Basic information <i style="color:red" [ngClass]="{'fa fa-exclamation-circle': !isValid('info')}"></i>
       </a>
-      <a [routerLink]="['tags']">Search tags</a>
+      <a [routerLink]="['tags']" routerLinkActive="active">
+        Search tags <i style="color:red" [ngClass]="{'fa fa-exclamation-circle': !isValid('tags')}"></i>
+      </a>
     </div>
 
     <router-outlet></router-outlet>
