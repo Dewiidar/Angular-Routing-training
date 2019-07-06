@@ -1,4 +1,5 @@
-<div style="position: absolute; top: 40vh; left: 50vw; text-align: center; z-index: 999; font-size: 3em;" *ngIf="loading">
+<div style="position: absolute; top: 40vh; left: 50vw; text-align: center; z-index: 999; font-size: 3em;"
+     *ngIf="loading">
     <i class="fa fa-spinner"></i>
 </div>
 
@@ -21,8 +22,11 @@
             *ngIf="isLoggedIn">
             <a class="nav-link">Welcome {{ userName }}</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link">Show Messages</a>
+        <li class="nav-item" *ngIf="!messageService.isDisplayed">
+            <a class="nav-link" (click)="displayMessages()">Show Messages</a>
+        </li>
+        <li class="nav-item" *ngIf="messageService.isDisplayed">
+            <a class="nav-link" (click)="hideMessages()">Hide Messages</a>
         </li>
         <li class="nav-item"
             *ngIf="!isLoggedIn">
@@ -36,5 +40,14 @@
     </ul>
 </nav>
 <div class="container">
-    <router-outlet></router-outlet>
+    <div class="row">
+        <div class="col-12 col-md-10">
+            <!-- primary outlet-->
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-12 col-md-2">
+            <!-- secondary outlet-->
+            <router-outlet name="popup"></router-outlet>
+        </div>
+    </div>
 </div>
